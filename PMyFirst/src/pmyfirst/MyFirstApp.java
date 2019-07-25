@@ -18,7 +18,8 @@ public class MyFirstApp {
 		int number = 5;
 		// declare a local method variable called number2
 		int number2 = 7;
-		System.out.println(number + number2);
+		System.out.println(number + number2 + 2);
+		// test to see if git works
 	}
 
 }
