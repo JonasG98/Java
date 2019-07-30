@@ -24,56 +24,56 @@ class SalaryTest {
 		Salary test = new Salary(0);
 		test.setGross(100000);
 		test.getTax();
-		assertEquals(76080, test.getGross(),0.001);
+		assertEquals(23920, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax1() {
 		Salary test = new Salary(0);
 		test.setGross(50000);
 		test.getTax();
-		assertEquals(41980, test.getGross(),0.001);
+		assertEquals(8020.0, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax2() {
 		Salary test = new Salary(0);
 		test.setGross(30000);
 		test.getTax();
-		assertEquals(25730, test.getGross(),0.001);
+		assertEquals(4270.0, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax3() {
 		Salary test = new Salary(0);
 		test.setGross(10000);
 		test.getTax();
-		assertEquals(8950, test.getGross(),0.001);
+		assertEquals(1050.0, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax4() {
 		Salary test = new Salary(0);
 		test.setGross(0);
 		test.getTax();
-		assertEquals(0, test.getGross(),0.001);
+		assertEquals(0, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax5() {
 		Salary test = new Salary(0);
 		test.setGross(48001);
 		test.getTax();
-		assertEquals(40580.7, test.getGross(),0.001);
+		assertEquals(7420.3, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax6() {
 		Salary test = new Salary(0);
 		test.setGross(70001);
 		test.getTax();
-		assertEquals(55980.67, test.getGross(),0.001);
+		assertEquals(14020.33, test.getTax(),0.001);
 	}
 	@Test
 	void testGetTax7() {
 		Salary test = new Salary(0);
 		test.setGross(-1000);
 		test.getTax();
-		assertEquals(-1000, test.getGross(),0.001);
+		assertEquals(0, test.getTax(),0.001);
 	}
 
 

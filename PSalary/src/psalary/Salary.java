@@ -37,12 +37,13 @@ public class Salary {
 			tax = gross * 0.105;
 		}
 		
-		gross = gross - tax;
-		return gross;
+		//gross = gross - tax;
+		return tax;
 	}
 	double getNet()
 	{
-		getTax();
+		double tax = getTax();
+		gross = gross - tax;
 		return gross;
 	}
 
