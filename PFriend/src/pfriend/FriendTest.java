@@ -120,7 +120,7 @@ class FriendTest {
 	}
 	@Test
 	void testCalcAge3() {
-		Friend person3 = new Friend("Fynn", "Semrau", 1998,8,9,Gender.MALE,"Hofheim", "fynn.fynn@gmail.com", Relationship.SINGLE);
+		Friend person3 = new Friend("Fynn", "Semrau", 1998,8,14,Gender.MALE,"Hofheim", "fynn.fynn@gmail.com", Relationship.SINGLE);
 		assertEquals(20,person3.calcAge());
 	}
 

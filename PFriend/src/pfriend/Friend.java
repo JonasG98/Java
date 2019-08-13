@@ -66,10 +66,6 @@ public class Friend {
 	{
 		return birthdate;
 	}
-	public LocalDate getEntered()
-	{
-		return entered;
-	}
 	public void setName(String name)
 	{
 		this.name = name;
@@ -107,7 +103,7 @@ public class Friend {
 		{
 			age = currentDate.getYear() - birthdate.getYear();
 		}
-		else if(currentDate.getMonthValue() == birthdate.getMonthValue())
+		else 
 		{
 			if(currentDate.getDayOfMonth() < birthdate.getDayOfMonth())
 			{
@@ -118,10 +114,7 @@ public class Friend {
 				age = currentDate.getYear() - birthdate.getYear() ;
 			}
 		}
-		else
-		{
-			age = currentDate.getYear() - birthdate.getYear() - 1;
-		}
+		
 		
 		return age;
 	}
