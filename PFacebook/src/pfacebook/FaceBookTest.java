@@ -55,7 +55,7 @@ class FaceBookTest {
 		book.addFriend(person1);
 		book.addFriend(person2);
 		book.addFriend(person3);
-		
+		assertEquals(3,book.getFriendNumber());
 		System.out.println(book.displayFriends());
 	}
 
@@ -69,6 +69,8 @@ class FaceBookTest {
 		book.addFriend(person2);
 		book.addFriend(person3);
 		System.out.println(book.displayYoungsters());
+		assertEquals("Jonas Gorman faceBook profile under 21\n" + 
+				"Niki Albers 2000-05-22 MALE Hofheim fynn.fynn@gmail.com SINGLE \n",book.displayYoungsters());
 	}
 
 	@Test
@@ -81,6 +83,7 @@ class FaceBookTest {
 		book.addFriend(person2);
 		book.addFriend(person3);
 		book.removeFriend(person2);
+		assertEquals(2,book.getFriendNumber());
 		System.out.println(book.displayFriends());
 	}
 	
@@ -92,6 +95,7 @@ class FaceBookTest {
 		Friend person2 = new Friend("Fynn", "Semrau", 1998,3,30,Gender.MALE,"Hofheim", "fynn.fynn@gmail.com", Relationship.SINGLE);
 		book.addFriend(person1);
 		book.addFriend(person2);
+		assertEquals(1,book.getFriendNumber());
 		System.out.println(book.displayFriends());
 	}
 	@Test
@@ -118,11 +122,13 @@ class FaceBookTest {
 		book.addFriend(person3);
 		book.addFriend(person4);
 		System.out.println(book.displayYoungsters());
+		assertEquals("Jonas Gorman testing U21 under 21\n" + "Niki Albers 2000-05-22 MALE Hofheim fynn.fynn@gmail.com SINGLE \n",book.displayYoungsters());
 	}
 	@Test
 	void testEmptyList()
 	{
 		FaceBook book = new FaceBook("Jonas Gorman testing empty List");
+		assertEquals(0,book.getFriendNumber());
 		System.out.println(book.displayFriends());
 		
 	}
