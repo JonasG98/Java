@@ -231,4 +231,77 @@ public class ArrayAndListUtilities {
 			}
 		}
 	}
+	public static String binarySearch(int[] numbers, int wanted)
+	{
+		ArrayAndListUtilities.bubbleSortv3(numbers);
+		
+		int left = 0;
+		int right = numbers.length -1;
+		
+		
+		while (left <= right)
+		{
+			int middle = ( left + right ) /2;
+			if (numbers[middle] == wanted)
+			{
+				return "found it at " + middle;
+			}
+			else if (wanted < numbers[middle])
+			{
+				right = middle - 1;
+			}
+			else 
+			{
+				left = middle + 1;
+			}
+			
+		}
+		return "not found";
+	}
+	public static String binarySearch(String[] words, String wanted)
+	{
+		ArrayAndListUtilities.stringSort(words);
+		int left = 0;
+		int right =words.length -1;
+		
+		
+		while (left <= right)
+		{
+			int middle = ( left + right ) /2;
+			if (words[middle].equals(wanted))
+			{
+				return "found it at " + middle;
+			}
+			else if (wanted.compareTo(words[middle]) < 0)
+			{
+				right = middle - 1;
+			}
+			else
+			{
+				left = middle + 1;
+			}
+		
+		}
+		
+		return "not found";
+		
+	}
+	public static void stringSort(String[] words)
+	{
+		boolean sorted = false;
+		while (sorted == false)
+		{
+			sorted = true;
+			for(int j = 0; j < words.length -1; j++)
+			{
+				if(words[j].compareTo(words[j+1]) > 0)
+				{
+				String temp = words[j + 1];
+				words[j+1] = words[j];
+				words[j] = temp;
+				sorted = false;
+				}
+			}
+		}
+	}
 }

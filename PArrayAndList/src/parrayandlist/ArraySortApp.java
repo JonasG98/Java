@@ -60,6 +60,55 @@ public class ArraySortApp {
 		}
 
 
+	
+	
+	File file2 = new File("threebears.txt");
+	ArrayList<String> words = new ArrayList<String>();
+	
+	try
+	{
+	Scanner scanner2 = new Scanner(file2);
+		while (scanner2.hasNextLine())
+		{
+		
+			String line = scanner2.nextLine();
+			words.add(line);
+		
+		
+		}
+		
+		scanner2.close();
+		
+		
 	}
-
+	
+	
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	String[] array = words.toArray(new String[0]);
+	ArrayAndListUtilities.stringSort(array);
+	
+	try {
+		FileWriter outFile = new FileWriter("bears.txt");
+		PrintWriter out = new PrintWriter(outFile);
+		
+		for (int i = 0; i < array.length; i ++)
+		{
+			out.println(array[i]);
+		}
+		out.close();
+		
+		} 
+	
+	catch (IOException e)
+	{
+			e.printStackTrace();
+	}
+	System.out.println(ArrayAndListUtilities.binarySearch(array, "always"));
+	
 }
+}
+
+

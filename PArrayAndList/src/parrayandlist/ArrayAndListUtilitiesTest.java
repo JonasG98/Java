@@ -247,5 +247,63 @@ class ArrayAndListUtilitiesTest {
 		assertArrayEquals(expected, numbers);
 		
 	}
+	@Test
+	void binarySearchTest()
+	{
+		int[] numbers = {2,6,3,7,10,4,50,76,30};
+		String actual = ArrayAndListUtilities.binarySearch(numbers, 111);
+		
+	    assertEquals("not found", actual);
+		
+	} 
+	@Test
+	void binarySearchTest1()
+	{
+		int[] numbers = {2,6,3,7,10,4,50,76,30};
+		String actual = ArrayAndListUtilities.binarySearch(numbers, 2);
+		
+	    assertEquals("found it at 0", actual);
+		
+	} 
+	@Test
+	void binarySearchTest2()
+	{
+		int[] numbers = {2,6,3,7,10,4,50,76,30};
+		String actual = ArrayAndListUtilities.binarySearch(numbers, 76);
+		
+	    assertEquals("found it at 8", actual); 
+		
+	} 
+	@Test
+	void stringSortTest()
+	{
+		String[] words = {"hello", "my", "name", "is", "jonas"};
+		String[] expected = {"hello", "is", "jonas", "my", "name"};
+		ArrayAndListUtilities.stringSort(words);
+		assertArrayEquals(expected, words);
+		//for (String item:words)
+		//		{
+			//	System.out.println(item);
+		//		}
+		
+	}
+	@Test
+	void binarySearchTestString()
+	{
+		String[] words = {"hello", "my", "name", "is", "jonas"};
+		String actual = ArrayAndListUtilities.binarySearch(words, "my");
+		assertEquals("found it at 3", actual);
+		
+		
+	}
+	@Test
+	void binarySearchTestString1()
+	{
+		String[] words = {"hello", "my", "name", "is", "jonas"};
+		String actual = ArrayAndListUtilities.binarySearch(words, "blob");
+		assertEquals("not found", actual);
+		
+		
+	}
 
 }
