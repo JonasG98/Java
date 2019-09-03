@@ -3,7 +3,8 @@ package pfacebook;
 
 import java.time.LocalDate;
 
-public class Friend {
+public class Friend implements Comparable<Friend>
+{
 
 	private String name;
 	private String lastName;
@@ -133,7 +134,7 @@ public class Friend {
 		StringBuilder result = new StringBuilder(name + " " + lastName + " ");
 		if(birthdate != null)
 		{
-			result.append(birthdate + " ");
+			result.append(birthdate + " " + calcAge() + " ");
 		}
 		if(gender != null)
 		{
@@ -153,5 +154,16 @@ public class Friend {
 		}
 		
 		return result.toString();
+	}
+	@Override
+	public int compareTo(Friend f1) {
+		if(this.getlastName().equals(f1.getlastName()))
+		{
+			return this.name.compareTo(f1.name);
+		}
+		else
+		{
+		return this.lastName.compareTo(f1.lastName);
+		}
 	}
 }
