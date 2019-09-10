@@ -16,6 +16,8 @@ public class BookApp {
 		Book b6 = new Book("Dad Art", "Wilkins, Damien");
 		Book b7 = new Book("The Antipodeans", "McGee, Greg");
 		Book b8 = new Book("Absence", "King, Joanna");
+		Book b9 = new Book("Taken", "O'Callagan, Sue");
+		Book b10 = new Book("Taken", "Crais, Robert");
 		bookList.add(b0);
 		bookList.add(b1);
 		bookList.add(b2);
@@ -25,9 +27,11 @@ public class BookApp {
 		bookList.add(b6);
 		bookList.add(b7);
 		bookList.add(b8);
+		bookList.add(b9);
+		bookList.add(b10);
 		//Collections.sort(bookList);
-		AuthorCompare ag = new AuthorCompare();
-		Collections.sort(bookList,ag);
+		//AuthorCompare ag = new AuthorCompare();
+		Collections.sort(bookList);
 		for(Book item: bookList)
 		{
 			System.out.println(item);
