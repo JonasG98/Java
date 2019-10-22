@@ -6,17 +6,17 @@ public class Game {
 	
 	private String name;
 	private String releaseDate;
-	private String achievments;
-	private String positiveRatings;
-	private String negativeRatings;
-	private String averagePlaytime;
-	private String medianPlaytime;
+	private int achievments;
+	private int positiveRatings;
+	private int negativeRatings;
+	private int averagePlaytime;
+	private int medianPlaytime;
 	private String owners;
-	private String price;
+	private double price;
 	
 	
-	public Game(String name, String releaseDate, String achievments, String positiveRatings, String negativeRatings,
-			String averagePlaytime, String medianPlaytime, String owners, String price) {
+	public Game(String name, String releaseDate, int achievments, int positiveRatings, int negativeRatings,
+			int averagePlaytime, int medianPlaytime, String owners, double price) {
 		super();
 		this.name = name;
 		this.releaseDate = releaseDate;
@@ -50,52 +50,52 @@ public class Game {
 	}
 
 
-	public String getAchievments() {
+	public int getAchievments() {
 		return achievments;
 	}
 
 
-	public void setAchievments(String achievments) {
+	public void setAchievments(int achievments) {
 		this.achievments = achievments;
 	}
 
 
-	public String getPositiveRatings() {
+	public int getPositiveRatings() {
 		return positiveRatings;
 	}
 
 
-	public void setPositiveRatings(String positiveRatings) {
+	public void setPositiveRatings(int positiveRatings) {
 		this.positiveRatings = positiveRatings;
 	}
 
 
-	public String getNegativeRatings() {
+	public int getNegativeRatings() {
 		return negativeRatings;
 	}
 
 
-	public void setNegativeRatings(String negativeRatings) {
+	public void setNegativeRatings(int negativeRatings) {
 		this.negativeRatings = negativeRatings;
 	}
 
 
-	public String getAveragePlaytime() {
+	public int getAveragePlaytime() {
 		return averagePlaytime;
 	}
 
 
-	public void setAveragePlaytime(String averagePlaytime) {
+	public void setAveragePlaytime(int averagePlaytime) {
 		this.averagePlaytime = averagePlaytime;
 	}
 
 
-	public String getMedianPlaytime() {
+	public int getMedianPlaytime() {
 		return medianPlaytime;
 	}
 
 
-	public void setMedianPlaytime(String medianPlaytime) {
+	public void setMedianPlaytime(int medianPlaytime) {
 		this.medianPlaytime = medianPlaytime;
 	}
 
@@ -110,15 +110,16 @@ public class Game {
 	}
 
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
+
 	
 	
 

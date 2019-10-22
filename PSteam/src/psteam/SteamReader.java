@@ -18,53 +18,34 @@ public class SteamReader {
 	{
 			 String name;
 			 String releaseDate;
-			 String achievments;
-			 String positiveRatings;
-			 String negativeRatings;
-			 String averagePlaytime;
-			 String medianPlaytime;
+			 int achievments;
+			 int positiveRatings;
+			 int negativeRatings;
+			 int averagePlaytime;
+			 int medianPlaytime;
 			 String owners;
-			 String price;
+			 double price;
 			 String line;
-			// BufferedReader br = null;
-			// File file = new File("steam.csv");
-			// try {
-				
-		    //     br = new BufferedReader(new FileReader(file));
-		    //     String availalbe;
-		    //     while((availalbe = br.readLine()) != null) {
-		   //                  
-		    //     }
-		   //   } catch (FileNotFoundException e) {
-		    //     e.printStackTrace();
-		    //  } catch (IOException e) {
-		    //     e.printStackTrace();
-		    //  } finally {
-		    //     if (br != null) {
-		     //       try {
-		       //        br.close();
-		     //       } catch (IOException e) {
-		       //        e.printStackTrace();
-		      //      }
-		      //   }
-		    //  }
+			
 			 try
 			 {
 				 BufferedReader in = new BufferedReader(new FileReader("steam.csv"));
 				
-				 
+				 int i = 0;
 					while ((line = in.readLine())!= null)
 					 {
+						System.out.println(i);
+						i++;
 						 String[] fields = line.split(",");
 						 name= fields[0];
 						 releaseDate= fields[1];
-						 achievments= fields[2];
-						 positiveRatings= fields[3];
-						 negativeRatings= fields[4];
-						 averagePlaytime= fields[5];
-						 medianPlaytime= fields[6];
+						 achievments= Integer.parseInt(fields[2]);
+						 positiveRatings= Integer.parseInt(fields[3]);
+						 negativeRatings= Integer.parseInt(fields[4]);
+						 averagePlaytime= Integer.parseInt(fields[5]);
+						 medianPlaytime= Integer.parseInt(fields[6]);
 						 owners= fields[7];
-						 price= fields[8];
+						 price= Double.parseDouble(fields[8]);
 						 games.add(new Game(name,releaseDate,achievments,positiveRatings,negativeRatings,averagePlaytime,medianPlaytime,owners,price));
 					 }
 				} catch (IOException e) {
