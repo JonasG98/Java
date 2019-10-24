@@ -1,22 +1,26 @@
 package psteam;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
-public class Game {
+
+
+public class Game  implements Comparable<Game>{
 	
 	private String name;
-	private String releaseDate;
+	private LocalDate releaseDate;
 	private int achievments;
 	private int positiveRatings;
 	private int negativeRatings;
 	private int averagePlaytime;
 	private int medianPlaytime;
-	private String owners;
+	private int minOwners;
+	private int maxOwners;
 	private double price;
 	
 	
-	public Game(String name, String releaseDate, int achievments, int positiveRatings, int negativeRatings,
-			int averagePlaytime, int medianPlaytime, String owners, double price) {
+	public Game(String name, LocalDate releaseDate, int achievments, int positiveRatings, int negativeRatings,
+			int averagePlaytime, int medianPlaytime, int minOwners, int maxOwners, double price) {
 		super();
 		this.name = name;
 		this.releaseDate = releaseDate;
@@ -25,7 +29,8 @@ public class Game {
 		this.negativeRatings = negativeRatings;
 		this.averagePlaytime = averagePlaytime;
 		this.medianPlaytime = medianPlaytime;
-		this.owners = owners;
+		this.minOwners = minOwners;
+		this.maxOwners = maxOwners;
 		this.price = price;
 	}
 
@@ -40,12 +45,12 @@ public class Game {
 	}
 
 
-	public String getReleaseDate() {
+	public LocalDate getReleaseDate() {
 		return releaseDate;
 	}
 
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(LocalDate releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
@@ -100,13 +105,23 @@ public class Game {
 	}
 
 
-	public String getOwners() {
-		return owners;
+	public int getMinOwners() {
+		return minOwners;
 	}
 
 
-	public void setOwners(String owners) {
-		this.owners = owners;
+	public void setMinOwners(int minOwners) {
+		this.minOwners = minOwners;
+	}
+
+
+	public int getMaxOwners() {
+		return maxOwners;
+	}
+
+
+	public void setMaxOwners(int maxOwners) {
+		this.maxOwners = maxOwners;
 	}
 
 
@@ -118,6 +133,14 @@ public class Game {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+
+	@Override
+	public int compareTo(Game f1) {
+		return Integer.compare( f1.positiveRatings, this.positiveRatings);
+	}
+
+
 
 
 	

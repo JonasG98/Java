@@ -3,6 +3,7 @@ package psteam;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 
 import javax.swing.JFrame;
@@ -24,6 +25,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SteamGui extends JFrame {
 
@@ -37,9 +44,12 @@ public class SteamGui extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Name", "Release Date", "Achievments", "Positive Ratings", "Negative Ratings", "Average Playtime", "Median Playtime", "Owners", "Price"
+				"Name", "Release Date", "Achievments", "Positive Ratings", "Negative Ratings", "Average Playtime", "Median Playtime", "MinOwners", "MaxOwners", "Price"
 			}
 		);
+	private final JComboBox sortingOn = new JComboBox();
+	private final JLabel lblSortOn = new JLabel("Sort on:");
+	private final JButton sort = new JButton("Sort");
 
 	/**
 	 * Launch the application.
@@ -66,8 +76,25 @@ public class SteamGui extends JFrame {
 		scrollPane.setBounds(10, 11, 1332, 745);
 		
 		panel.add(scrollPane);
-		table.setModel(tm);
+		
 		scrollPane.setViewportView(table);
+		table.setModel(tm);
+		sortingOn.setModel(new DefaultComboBoxModel(new String[] {"Name", "Date", "Positive Reviews", "Negative Reviews", "Average Playtime", "Median Playtime", "Minimum Owners", "Maximum Onwers", "Price"}));
+		sortingOn.setBounds(171, 838, 137, 22);
+		
+		contentPane.add(sortingOn);
+		lblSortOn.setBounds(75, 842, 62, 14);
+		
+		contentPane.add(lblSortOn);
+		sort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Collections.sort(games, );
+				//sortingOn.getSelectedItem();
+			}
+		});
+		sort.setBounds(338, 838, 89, 23);
+		
+		contentPane.add(sort);
 		createPieGraphTab();
 		drawTable();
 		createALineChartTab();
@@ -78,7 +105,7 @@ public class SteamGui extends JFrame {
 		tm.setRowCount(0);
 		for (int i=0; i < games.size(); i ++)
 		{
-			Object[] littleObject = new Object[9];
+			Object[] littleObject = new Object[10];
 			littleObject[0] = games.get(i).getName();
 			littleObject[1] = games.get(i).getReleaseDate();
 			littleObject[2] = games.get(i).getAchievments();
@@ -86,8 +113,9 @@ public class SteamGui extends JFrame {
 			littleObject[4] = games.get(i).getNegativeRatings();
 			littleObject[5] = games.get(i).getAveragePlaytime();
 			littleObject[6] = games.get(i).getMedianPlaytime();
-			littleObject[7] = games.get(i).getOwners();
-			littleObject[8] = games.get(i).getPrice();
+			littleObject[7] = games.get(i).getMinOwners();
+			littleObject[8] = games.get(i).getMaxOwners();
+			littleObject[9] = games.get(i).getPrice();
 	
 			tm.addRow(littleObject);
 		}
@@ -96,12 +124,15 @@ public class SteamGui extends JFrame {
 	
 	private void createPieGraphTab()
 	{
+		Collections.sort(games);
 		DefaultPieDataset data = new DefaultPieDataset();
-		data.setValue("Principal Lecturer", 5);
-		data.setValue("Lecturer", 2);
-		data.setValue("Admin", 7);
+		for (int i=0; i < 20; i ++)
+		{
+		data.setValue(games.get(i).getName(), games.get(i).getPositiveRatings());
+		}
 		
-		JFreeChart chart = ChartFactory.createPieChart("Sample Pie Chart", data, true, true, Locale.ENGLISH);
+		
+		JFreeChart chart = ChartFactory.createPieChart("Top 20 Positive Rating Games on Steam", data, true, true, Locale.ENGLISH);
 		
 		ChartPanel mypanel = new ChartPanel(chart);
 		mypanel.setVisible(true);
