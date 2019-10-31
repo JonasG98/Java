@@ -25,12 +25,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class SteamGui extends JFrame {
 
@@ -50,6 +52,11 @@ public class SteamGui extends JFrame {
 	private final JComboBox sortingOn = new JComboBox();
 	private final JLabel lblSortOn = new JLabel("Sort on:");
 	private final JButton sort = new JButton("Sort");
+	private final JLabel lblTopOf = new JLabel("Top 1500 of positive rated games on steam");
+	private final JPanel individual = new JPanel();
+	private final JLabel lblIndividualData = new JLabel("Individual Data");
+	private final JButton btnPrevious = new JButton("Previous");
+	private final JButton btnNext = new JButton("Next");
 
 	/**
 	 * Launch the application.
@@ -62,39 +69,96 @@ public class SteamGui extends JFrame {
 	public SteamGui(ArrayList<Game>games) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.games = games;
-		setBounds(100, 100, 1411, 935);
+		setBounds(100, 100, 1411, 1030);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		tabbedPane.setBounds(37, 31, 1368, 784);
+		tabbedPane.setBounds(27, 127, 1368, 784);
 		
 		contentPane.add(tabbedPane);
 		
-		tabbedPane.addTab("Table", null, panel, null);
+		tabbedPane.addTab("Steam Table", null, panel, null);
 		panel.setLayout(null);
-		scrollPane.setBounds(10, 11, 1332, 745);
+		scrollPane.setBounds(0, 0, 1332, 745);
 		
 		panel.add(scrollPane);
 		
 		scrollPane.setViewportView(table);
 		table.setModel(tm);
-		sortingOn.setModel(new DefaultComboBoxModel(new String[] {"Name", "Date", "Positive Reviews", "Negative Reviews", "Average Playtime", "Median Playtime", "Minimum Owners", "Maximum Onwers", "Price"}));
-		sortingOn.setBounds(171, 838, 137, 22);
+		sortingOn.setModel(new DefaultComboBoxModel(new String[] {"Name", "Date", "Positive Reviews", "Negative Reviews", "Average Playtime", "Median Playtime", "Minimum Owners", "Maximum Owners", "Price"}));
+		sortingOn.setBounds(133, 932, 137, 22);
 		
 		contentPane.add(sortingOn);
-		lblSortOn.setBounds(75, 842, 62, 14);
+		lblSortOn.setBounds(61, 936, 62, 14);
 		
 		contentPane.add(lblSortOn);
 		sort.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Collections.sort(games, );
-				//sortingOn.getSelectedItem();
+				
+				String result = (String) sortingOn.getSelectedItem();
+				if (result.equals("Name"))
+				{
+				GameCompare ac = new GameCompare();
+				Collections.sort(games, ac);
+				drawTable();
+				}
+				if (result.contentEquals("Price"))
+				{
+					PriceCompare pc = new PriceCompare();
+					Collections.sort(games, pc);
+					drawTable();
+				}
+				if (result.contentEquals("Negative Reviews"))
+				{
+					NegativCompare nc = new NegativCompare();
+					Collections.sort(games, nc);
+					drawTable();
+				}
+				if (result.contentEquals("Positive Reviews"))
+				{
+					Collections.sort(games);
+					drawTable();
+				}
+				if (result.contentEquals("Average Playtime"))
+				{
+					AverageCompare ac = new AverageCompare();
+					Collections.sort(games, ac);
+					drawTable();
+				}
+				if (result.contentEquals("Median Playtime"))
+				{
+					MedianCompare mc = new MedianCompare();
+					Collections.sort(games, mc);
+					drawTable();
+				}
+				if (result.contentEquals("Minimum Owners"))
+				{
+					MinCompare ac = new MinCompare();
+					Collections.sort(games, ac);
+					drawTable();
+				}
+				if (result.contentEquals("Maximum Owners"))
+				{
+					MaxCompare ac = new MaxCompare();
+					Collections.sort(games, ac);
+					drawTable();
+				}
+				if (result.contentEquals("Date"))
+				{
+					DateCompare ac = new DateCompare();
+					Collections.sort(games, ac);
+					drawTable();
+				}
 			}
 		});
-		sort.setBounds(338, 838, 89, 23);
+		sort.setBounds(290, 932, 89, 23);
 		
 		contentPane.add(sort);
+		lblTopOf.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		lblTopOf.setBounds(61, 49, 565, 45);
+		
+		contentPane.add(lblTopOf);
 		createPieGraphTab();
 		drawTable();
 		createALineChartTab();
@@ -137,7 +201,7 @@ public class SteamGui extends JFrame {
 		ChartPanel mypanel = new ChartPanel(chart);
 		mypanel.setVisible(true);
 		
-		tabbedPane.add("Pie Graph", mypanel);
+		tabbedPane.add("Rating Graph", mypanel);
 	}
 	
 	private void createALineChartTab()
@@ -164,6 +228,23 @@ public class SteamGui extends JFrame {
 		NumberAxis range = (NumberAxis) plot.getDomainAxis();
 		range.setRange(45, 80);
 		range.setTickUnit(new NumberTickUnit(10));
+		
+		tabbedPane.addTab("Individual Data", null, individual, null);
+		individual.setLayout(null);
+		lblIndividualData.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblIndividualData.setBounds(109, 55, 143, 41);
+		
+		individual.add(lblIndividualData);
+		btnPrevious.setBounds(68, 527, 89, 23);
+		
+		individual.add(btnPrevious);
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNext.setBounds(216, 527, 89, 23);
+		
+		individual.add(btnNext);
 		
 		ChartPanel mypanel2 = new ChartPanel(chart);
 		tabbedPane.add("Line Graph", mypanel2);
